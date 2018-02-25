@@ -48,7 +48,7 @@ wintee/wtee.exe is released under the [Mozilla](https://www.mozilla.org/en-US/MP
 
 <p><img src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png" width="175"></p>
 
-[appveyor-icon]: https://ci.appveyor.com/api/projects/status/
+[appveyor-icon]: https://ci.appveyor.com/api/projects/status/xg66mw0vadt86i2e?svg=true
 
 [appveyor-link]: https://ci.appveyor.com/project/bmatthewshea/ethminerGUI
 
