@@ -18,7 +18,7 @@ ethminerGUI - Graphical User Interface for "ethminer" (Windows)
 - The 'profiles.xml' holds the profiles you have created. This can be copied to other machines.
 - %appdata%\ethminerGUI\user.config should only created if you "save settings on exit".
 - Note: the free 'win tee' (wtee.exe) is required to use the log feature. [(Google archive/source here)](https://code.google.com/archive/p/wintee/downloads)
-- Ethminer needs a newer release that support newer flags. [Release Version "0.13.0"](https://github.com/ethereum-mining/ethminer/releases) works well for this.
+- Ethminer needs a newer release that supports newer flags. [Release Version "0.13.0"](https://github.com/ethereum-mining/ethminer/releases) was used developing this app.
 
 ## Features
 
