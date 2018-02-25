@@ -2,5 +2,4 @@
 image: Visual Studio 2017
 
 artifacts:
-- path: xmrig-win64.zip
-ethminerGUI-BETA-Release-v008.7z
+- path: ethminerGUI-BETA-Release-v008.7z
