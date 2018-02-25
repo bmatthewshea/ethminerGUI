@@ -133,7 +133,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>"D:\Program Files\7-Zip\7z.exe" a -t7z ethminerGUI-BETA-Release-v008-1.7z "$(ProjectDir)$(OutDir)ethminerGUI.exe" "$(ProjectDir)$(OutDir)ethminerGUI.exe.config" "$(ProjectDir)$(OutDir)ethminer.exe" "$(ProjectDir)$(OutDir)wtee.exe"</PostBuildEvent>
+    <PostBuildEvent>7z a -t7z ethminerGUI-BETA-Release-v008.7z "$(ProjectDir)$(OutDir)ethminerGUI.exe" "$(ProjectDir)$(OutDir)ethminerGUI.exe.config" "$(ProjectDir)$(OutDir)ethminer.exe" "$(ProjectDir)$(OutDir)wtee.exe"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>copy "$(ProjectDir)Helpers\*.*" "$(ProjectDir)$(OutDir)"

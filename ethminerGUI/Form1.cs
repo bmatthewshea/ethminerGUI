@@ -492,6 +492,9 @@ namespace ethminerGUI
 
                     //recheck
                     int recheck = 500;
+                    int port1 = 0;
+                    int port2 = 0;
+
                     if (!int.TryParse(TextBoxRecheck.Text, out recheck))
                     { MessageBox.Show("Please correct \"--farm-recheck\" value."); return; }
 
@@ -500,25 +503,25 @@ namespace ethminerGUI
                     { MessageBox.Show("Please correct primary pool name."); return; }
 
                     //pool1port
-
+                    
                     var badportmessage = "Please correct pool port. (Value must be a number between 1025-65000.)";
-                    if (!int.TryParse(TextBoxPoolPort1.Text, out int port))
+                    if (!int.TryParse(TextBoxPoolPort1.Text, out port1))
                     {
                         MessageBox.Show(badportmessage);
                         return;
                     }
-                    if ((port - 1025) * (65000 - port) < 0)
+                    if ((port1 - 1025) * (65000 - port1) < 0)
                     {
                         MessageBox.Show(badportmessage);
                         return;
                     }
                     //port = 0;
-                    if (!int.TryParse(TextBoxPoolPort2.Text, out port))
+                    if (!int.TryParse(TextBoxPoolPort2.Text, out port2))
                     {
                         MessageBox.Show(badportmessage);
                         return;
                     }
-                    if ((port - 1025) * (65000 - port) < 0)
+                    if ((port2 - 1025) * (65000 - port2) < 0)
                     {
                         MessageBox.Show(badportmessage);
                         return;
