@@ -40,9 +40,9 @@ ethminerGUI - Graphical User Interface for "ethminer" (Windows)
 
 ## License
 
-ethminerGUI is released under the [GNU GPLv3](https://opensource.org/licenses/GPL-3.0).
-ethminer is released under the [GNU GPLv3](https://opensource.org/licenses/GPL-3.0).
-wintee/wtee.exe is released under the [Mozilla] https://www.mozilla.org/en-US/MPL/).
+ethminerGUI is released under the [GNU GPLv3](https://opensource.org/licenses/GPL-3.0).<br>
+ethminer is released under the [GNU GPLv3](https://opensource.org/licenses/GPL-3.0).<br>
+wintee/wtee.exe is released under the [Mozilla] https://www.mozilla.org/en-US/MPL/).<br>
 
 <!-- <p><img src="http://i.imgur.com/u1G0wvD.png" width="475"></p> -->
 
