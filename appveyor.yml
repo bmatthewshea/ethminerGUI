@@ -2,4 +2,6 @@
 image: Visual Studio 2017
 
 artifacts:
-- path: ethminerGUI-BETA-Release-v008.zip
+- path: '**\*.exe'
+
+- path: '**\*.zip' 
