@@ -18,14 +18,14 @@ ethminerGUI - Graphical User Interface for "ethminer" (Windows)
 - The 'profiles.xml' holds the profiles you have created. This can be copied to other machines.
 - %appdata%\ethminerGUI\user.config should only created if you "save settings on exit".
 - Note: the free 'win tee' (wtee.exe) is required to use the log feature. [(Google archive/source here)](https://code.google.com/archive/p/wintee/downloads)
-- Ethminer needs a newer release that support newer flags. [Release Version "0.13.0"](https://github.com/ethereum-mining/ethminer/releases) works well for this.
+- Ethminer needs a newer release that supports newer flags. [Release Version "0.13.0"](https://github.com/ethereum-mining/ethminer/releases) was used developing this app.
 
 ## Features
 
 - Covers most of the basic options for ethminer
 - Allows to save all your pools as profiles (profiles.xml)
 - No need for multiple cmd/batch files laying around
-- The 'profiles.xml' that is created by you can also be moved to other machines to share the profiles
+- 'profiles.xml' can also be moved to other machines to share the profiles
 
 ## TO-DO
 
@@ -40,17 +40,15 @@ ethminerGUI - Graphical User Interface for "ethminer" (Windows)
 
 ## License
 
-ethminerGUI is released under the [GNU GPLv3](https://opensource.org/licenses/GPL-3.0).
-
-ethminer is released under the [GNU GPLv3](https://opensource.org/licenses/GPL-3.0).
-
-wintee/wtee.exe is released under the [Mozilla] https://www.mozilla.org/en-US/MPL/).
+ethminerGUI is released under the [GNU GPLv3](https://opensource.org/licenses/GPL-3.0).<br>
+ethminer is released under the [GNU GPLv3](https://opensource.org/licenses/GPL-3.0).<br>
+wintee/wtee.exe is released under the [Mozilla](https://www.mozilla.org/en-US/MPL/).<br>
 
 <!-- <p><img src="http://i.imgur.com/u1G0wvD.png" width="475"></p> -->
 
 <p><img src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png" width="175"></p>
 
-[appveyor-icon]: https://ci.appveyor.com/api/projects/status/
+[appveyor-icon]: https://ci.appveyor.com/api/projects/status/xg66mw0vadt86i2e?svg=true
 
 [appveyor-link]: https://ci.appveyor.com/project/bmatthewshea/ethminerGUI
 
