@@ -1,2 +1,5 @@
 # image
 image: Visual Studio 2017
+
+artifacts:
+- path: ethminerGUI-BETA-Release-v008.7z
