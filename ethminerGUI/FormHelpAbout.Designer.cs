@@ -274,7 +274,7 @@
             this.TextBoxEthereum.ReadOnly = true;
             this.TextBoxEthereum.Size = new System.Drawing.Size(584, 20);
             this.TextBoxEthereum.TabIndex = 35;
-            this.TextBoxEthereum.Text = "0x4e06e4080E6043dfF23c8b634712Aca2e1DE4347";
+            this.TextBoxEthereum.Text = "0x486b3f277826a93ee0438c80afe0fe84c2216e16";
             this.TextBoxEthereum.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TextBoxEthereum_MouseClick);
             // 
             // TextBoxETC

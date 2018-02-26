@@ -528,14 +528,14 @@ namespace ethminerGUI
                     }
                     //- no check yet (optional field anyway)
 
-                    // parse acct/wallet
-                    var wallet = "0x0";
+                    // parse acct/wallet - just length for now - future -> make bool method to test it's valid.
+                    var wallet = "0x";
                     if (!String.IsNullOrEmpty(TextBoxAccount.Text))
                     {
-                        wallet = TextBoxAccount.Text.ToLower();
-                        TextBoxAccount.Text = wallet;
                         if (!CheckWalletAddress())
                         { MessageBox.Show("Please correct your wallet address.\n( Allowed characters: \"0x\" \"0-9\" \"a-f\" \"A-F\" )"); return; }
+                        else
+                            wallet = TextBoxAccount.Text;
                     }
 
                     //worker = "a-Z 0-9 _ -" are allowed.
