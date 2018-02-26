@@ -44,7 +44,7 @@ ethminerGUI is released under the [GNU GPLv3](https://opensource.org/licenses/GP
 ethminer is released under the [GNU GPLv3](https://opensource.org/licenses/GPL-3.0).<br>
 wintee/wtee.exe is released under the [Mozilla](https://www.mozilla.org/en-US/MPL/).<br>
 
-<!-- <p><img src="http://i.imgur.com/u1G0wvD.png" width="475"></p> -->
+<p><img src="https://i.imgur.com/cngxEbh.png" width="875"></p>
 
 <p><img src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png" width="175"></p>
 
