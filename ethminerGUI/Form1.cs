@@ -1,20 +1,12 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace ethminerGUI
 {
@@ -447,11 +439,7 @@ namespace ethminerGUI
                     // save routine here using a deserialed list OBJ. Gave up for now in favor of Linq/Xdoc
                     // - this is still the better way - need to find better way to update/add to/remove from the loaded OBJ while in memory before commit
 
-
-                    //var obj = Utilities.DeSerializeObject<Profiles>(Filepath);
-                    //string lastindex = obj.ProfileList. Last();
-                    //for (x )
-                    //var currentarray = obj.ProfileList;
+                    //var obj = Utilities.DeSerializeObject<Profiles>(Filepath); // this is fine - we have the valid xml as an object now
 
                     // To use this, we need to modifiy object first then serialize it. this wont work as-is..
                     //
@@ -483,13 +471,12 @@ namespace ethminerGUI
                     //};
                     //profiles.ProfileList.Add( obj. work);
 
-                    //// commit
+                    //// serialize / commit
                     //Utilities.SerializeObject(profiles, Filepath);
 
-
-
-                    //BEGIN validation before save
-
+                    ////////////////////////////////
+                    //BEGIN validation before save//
+                    ////////////////////////////////
                     //recheck
                     int recheck = 500;
                     int port1 = 0;
@@ -526,22 +513,19 @@ namespace ethminerGUI
                         MessageBox.Show(badportmessage);
                         return;
                     }
-                    //- no check yet (optional field anyway)
 
-                    // parse acct/wallet - just length for now - future -> make bool method to test it's valid.
+                    // parse acct/wallet
                     var wallet = "0x";
                     if (!String.IsNullOrEmpty(TextBoxAccount.Text))
                     {
                         if (!CheckWalletAddress())
-                        { MessageBox.Show("Please correct your wallet address.\n( Allowed characters: \"0x\" \"0-9\" \"a-f\" \"A-F\" )"); return; }
+                        {
+                            MessageBox.Show("Please correct your wallet address.\n\nMust be 42 characters long (use with \"0x\").\n\nAllowed characters: \"0x\" \"0-9\" \"a-f\" \"A-F\" )");
+                            return;
+                        }
                         else
                             wallet = TextBoxAccount.Text;
                     }
-
-                    //worker = "a-Z 0-9 _ -" are allowed.
-                    if (!String.IsNullOrEmpty(TextBoxWorker.Text))
-                        if (!Regex.IsMatch(TextBoxWorker.Text, @"^[a-zA-Z0-9_-]+$"))
-                        { MessageBox.Show("Please correct worker name.\n(Allowed characters: a-z A-Z 0-9 _ -)"); return; }
 
                     //email validate using system.net.mail
                     if (!String.IsNullOrEmpty(TextBoxEmail.Text))
@@ -567,9 +551,6 @@ namespace ethminerGUI
                                 MessageBoxDefaultButton.Button1);
                     }
 
-                    //
-
-
                     //idle timeout
                     var idlemin = 0;
                     var idlemessage = "Please correct idle minutes.\n(Value must be a number between 1-100.)";
@@ -586,8 +567,9 @@ namespace ethminerGUI
                             return;
                         }
                     }
-
-                    // END validation
+                    ////////////////////
+                    // END validation //
+                    ////////////////////
 
                     //radio controls to strings/ints (from form not SetCommand() 'command line')
                     SetRadioValues(out string worktype, out string gpu, out int sc, out int sp);
@@ -1031,13 +1013,13 @@ namespace ethminerGUI
         private bool CheckWalletAddress()
         {
             Regex validInput = new Regex(@"^(0x)?[0-9a-f]+$", RegexOptions.IgnoreCase);
-            if (validInput.IsMatch(TextBoxAccount.Text))
-                  return true;
+            if (validInput.IsMatch(TextBoxAccount.Text) & (TextBoxAccount.TextLength == 42)) // both need to be true. no shortcircuit. ether is "0x"+40 (42)
+                return true;
             else
-                  return false;
+                return false;
         }
 
-        // to do: move these repetitions to  utilities (public/static as form extensions)
+        // to do: move these repetitions to  utilities (public/static as form extension)
 
         private void TextBoxPoolPort1_KeyPress(object sender, KeyPressEventArgs e)
         { // Numbers only = https://stackoverflow.com/a/463335/503621  --- Need to really use NumericUpDown Textbox/Number Class
