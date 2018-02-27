@@ -767,8 +767,8 @@ namespace ethminerGUI
                 //ClearRight();
                 var profileindex = ListBoxProfiles.SelectedIndex;
                 var obj = Utilities.DeSerializeObject<Profiles>(Filepath);
-                var worktype = obj.ProfileList[profileindex].Worktype;
 
+                var worktype = obj.ProfileList[profileindex].Worktype;
                 switch (worktype)
                 {
                     case "-F":
@@ -778,16 +778,7 @@ namespace ethminerGUI
                         RadioStratumMode.Checked = true;
                         break;
                 }
-                if (obj.ProfileList[profileindex].Worktype == "-S")
-                {
-                    RadioStratumMode.Checked = true;
-                    RadioFarmMode.Checked = false;
-                }
-                else
-                {
-                    RadioStratumMode.Checked = false;
-                    RadioFarmMode.Checked = true;
-                }
+
                 var gpu = obj.ProfileList[profileindex].GPU;
                 switch (gpu)
                 {
@@ -801,6 +792,33 @@ namespace ethminerGUI
                         RadioButtonOpenCL.Checked = true;
                         break;
                 }
+
+                //client type
+                var sc = obj.ProfileList[profileindex].SC;
+                switch (sc)
+                {
+                    case 1:
+                        RadioButtonSC1.Checked = true;
+                        break;
+                    case 2:
+                        RadioButtonSC2.Checked = true;
+                        break;
+                }
+                //protocol type
+                var sp = obj.ProfileList[profileindex].SP;
+                switch (sp)
+                {
+                    case 0:
+                        RadioButtonSP0.Checked = true;
+                        break;
+                    case 1:
+                        RadioButtonSP1.Checked = true;
+                        break;
+                    case 2:
+                        RadioButtonSP2.Checked = true;
+                        break;
+                }
+
                 CheckBoxHWMON.Checked = obj.ProfileList[profileindex].HWMON;
                 CheckBoxRH.Checked = obj.ProfileList[profileindex].ReportHashRate;
                 TextBoxPool1.Text = obj.ProfileList[profileindex].Pool1.ToString();
@@ -853,7 +871,7 @@ namespace ethminerGUI
             //System.Diagnostics.Process.Start(String.Format(@"cmd.exe", @"/k {0}", ethminerpath + ethminercommand));
             try  // https://stackoverflow.com/questions/1275403/run-a-console-application-from-a-windows-form
             {
-                var startcommand = String.Format(" /c \"{0}\\{1}\" {2}", ethminerpath, ethminerexe, ethminercommand);
+                var startcommand = String.Format(" /C \"{0}\\{1}\" {2}", ethminerpath, ethminerexe, ethminercommand);
                 //powershell
                 //var startcommand = " &" + "\'" + ethminerpath + "\\" + ethminerexe + "\' " + ethminercommand;
                 //debug:
