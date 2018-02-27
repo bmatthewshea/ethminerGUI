@@ -94,7 +94,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(172, 13);
             this.label3.TabIndex = 9;
-            this.label3.Text = "(Beta) Version 0.8 (FEB2018)";
+            this.label3.Text = "(Beta) Version 0.9 (FEB2018)";
             // 
             // label5
             // 
@@ -201,11 +201,11 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(170, 141);
+            this.label10.Location = new System.Drawing.Point(193, 141);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(402, 16);
+            this.label10.Size = new System.Drawing.Size(356, 16);
             this.label10.TabIndex = 23;
-            this.label10.Text = "** Please consider a donation. Your karma needs help! **";
+            this.label10.Text = "** Please consider a donation. Help your karma! **";
             // 
             // label12
             // 

@@ -3,7 +3,9 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
@@ -12,7 +14,7 @@ namespace ethminerGUI
 {
     public partial class Form1 : Form
     {
-        // form class 'constants'
+        // form class
         string Filepath = Application.StartupPath + "\\profiles.xml";
         string console_tee = Application.StartupPath + "\\wtee.exe";
         //cmd
@@ -275,8 +277,6 @@ namespace ethminerGUI
 
         private void ButtonAddProfile_Click(object sender, EventArgs e)
         {
-            //Form2 profileForm = new Form2();  // moved to 1 form to simply things
-            //profileForm.ShowDialog();
             ClearLeft();
             ClearRight();
             EnableLeftEdit();
@@ -340,7 +340,7 @@ namespace ethminerGUI
             {
 
                 //
-                // build basic command
+                // build a command
                 //
 
                 //gpu type and recheck
@@ -394,35 +394,10 @@ namespace ethminerGUI
                 TextBoxPoolPort2.Text = "";
             // set the label command and tool tip while we're here
             var full = ethminerexe + " " + ethminercommand;
-            ToolTipEGUI.SetToolTip(LCurrentCommand, full);
             LCurrentCommand.Text = full;
+            ToolTipEGUI.SetToolTip(LCurrentCommand, full);
             //return the built string. (command WITHOUT "ethminer.exe")
             return ethminercommand;
-        }
-
-        private void benchmarkseconds_TextChanged(object sender, EventArgs e)
-        {
-            // not implemented yet
-        }
-
-        private void benchmarktrialsecs_TextChanged(object sender, EventArgs e)
-        {
-            // not implemented yet
-        }
-
-        private void benchmarktrials_TextChanged(object sender, EventArgs e)
-        {
-            // not implemented yet
-        }
-
-        private void simblock_TextChanged(object sender, EventArgs e)
-        {
-            SetCommand();
-        }
-
-        private void ComboBoxVerbosity_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SetCommand();
         }
 
         private void ButtonSaveProfileName_Click(object sender, EventArgs e)
@@ -489,9 +464,11 @@ namespace ethminerGUI
                     if (String.IsNullOrEmpty(TextBoxPool1.Text))
                     { MessageBox.Show("Please correct primary pool name."); return; }
 
-                    //pool1port
+                    //ports
                     
                     var badportmessage = "Please correct pool port. (Value must be a number between 1025-65000.)";
+
+                    //port1
                     if (!int.TryParse(TextBoxPoolPort1.Text, out port1))
                     {
                         MessageBox.Show(badportmessage);
@@ -502,16 +479,20 @@ namespace ethminerGUI
                         MessageBox.Show(badportmessage);
                         return;
                     }
-                    //port = 0;
-                    if (!int.TryParse(TextBoxPoolPort2.Text, out port2))
+
+                    //port2;
+                    if (!String.IsNullOrEmpty(TextBoxPool2.Text))
                     {
-                        MessageBox.Show(badportmessage);
-                        return;
-                    }
-                    if ((port2 - 1025) * (65000 - port2) < 0)
-                    {
-                        MessageBox.Show(badportmessage);
-                        return;
+                        if (!int.TryParse(TextBoxPoolPort2.Text, out port2))
+                        {
+                            MessageBox.Show(badportmessage);
+                            return;
+                        }
+                        if ((port2 - 1025) * (65000 - port2) < 0)
+                        {
+                            MessageBox.Show(badportmessage);
+                            return;
+                        }
                     }
 
                     // parse acct/wallet
@@ -726,6 +707,31 @@ namespace ethminerGUI
                 SetCommand();
         }
 
+        private void benchmarkseconds_TextChanged(object sender, EventArgs e)
+        {
+            // not implemented yet
+        }
+
+        private void benchmarktrialsecs_TextChanged(object sender, EventArgs e)
+        {
+            // not implemented yet
+        }
+
+        private void benchmarktrials_TextChanged(object sender, EventArgs e)
+        {
+            // not implemented yet
+        }
+
+        private void simblock_TextChanged(object sender, EventArgs e)
+        {
+            SetCommand();
+        }
+
+        private void ComboBoxVerbosity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetCommand();
+        }
+
         private void SetRadioValues(out string worktype, out string gpu, out int sc, out int sp)
         {
             //defaults for outs just in case:
@@ -837,6 +843,9 @@ namespace ethminerGUI
 
         }
 
+        [DllImport("user32.dll")]
+        static extern int SetWindowText(IntPtr hWnd, string text);
+
         private void ButtonStartMining_Click(object sender, EventArgs e)
         {
             ButtonStartMining.Text = "Stop Miner";
@@ -864,7 +873,7 @@ namespace ethminerGUI
                 //}
                 if (CheckBoxNoWarnings.Checked == true)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Command:  cmd\n" + startcommand, "Confirm Command!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    DialogResult dialogResult = MessageBox.Show("Command:  cmd\n" + startcommand, "Please Confirm Command", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (dialogResult == DialogResult.No)
                     {
                         ButtonStartMining.Text = "Start Miner";
@@ -874,20 +883,27 @@ namespace ethminerGUI
                     }
                         
                 }
-                //MessageBox.Show("Command:  " + proc.StartInfo.FileName + " " + proc.StartInfo.Arguments);
-                //txtOutput.Text += "C:\\> " + commandText + "\r\n";
-
 
                 // hookup the eventhandlers to capture the data that is received
                 //proc.OutputDataReceived += (crap, args) => sb.AppendLine(args.Data);
                 //proc.ErrorDataReceived += (crap, args) => sb.AppendLine(args.Data);
-
+                var consoletitle = "";
+                if ((EnableBenchmark.Checked == true) || (EnableSimulation.Checked == true))
+                    consoletitle = " ethminerGUI - Running Test";
+                else
+                    consoletitle = " ethminerGUI - " + TextBoxPool1.Text + ":" + TextBoxPoolPort1.Text + "  (Mining!)";
 
                 proc.Start();
                 // start our event pumps
                 //proc.BeginOutputReadLine();
                 //proc.BeginErrorReadLine();
 
+                // https://stackoverflow.com/a/45214485/503621 :
+                SpinWait.SpinUntil(delegate
+                {
+                    return proc.MainWindowHandle != IntPtr.Zero;
+                });
+                SetWindowText(proc.MainWindowHandle, consoletitle );
 
                 //txtOutput.Text += proc.StandardOutput.ReadToEnd().Replace("\n", "\r\n");
                 //txtOutput.Text += proc.StandardError.ReadToEnd().Replace("\n", "\r\n");
@@ -1013,7 +1029,7 @@ namespace ethminerGUI
         private bool CheckWalletAddress()
         {
             Regex validInput = new Regex(@"^(0x)?[0-9a-f]+$", RegexOptions.IgnoreCase);
-            if (validInput.IsMatch(TextBoxAccount.Text) & (TextBoxAccount.TextLength == 42)) // both need to be true. no shortcircuit. ether is "0x"+40 (42)
+            if (validInput.IsMatch(TextBoxAccount.Text) & (TextBoxAccount.TextLength == 42)) // both need to be true. no shortcircuit. needs certain chars & "0x"+40 (42)
                 return true;
             else
                 return false;
