@@ -15,10 +15,12 @@ ethminerGUI - Graphical User Interface for "ethminer" (Windows)
 ## Installation
 
 - The EXE can be placed anywhere. Optionally, you can place it with the exe.config and your custom settings.
-- The 'profiles.xml' holds the profiles you have created. This can be copied to other machines.
+- [(ethminer)](https://github.com/ethereum-mining/ethminer) should be placed with the EXE or selected from Settings Menu.
+- The 'profiles.xml' holds the profiles you have created. This can be copied to other rigs and used without recreating.
 - %appdata%\ethminerGUI\user.config should only created if you "save settings on exit".
 - Note: the free 'win tee' (wtee.exe) is required to use the log feature. [(Google archive/source here)](https://code.google.com/archive/p/wintee/downloads)
 - Ethminer needs a newer release that supports newer flags. [Release Version "0.13.0"](https://github.com/ethereum-mining/ethminer/releases) was used developing this app.
+- The release section ZIP file contains the pre-built ethminerGUI EXE along with wtee.exe and ethminer.exe.
 
 ## Features
 
@@ -42,8 +44,8 @@ ethminerGUI - Graphical User Interface for "ethminer" (Windows)
 ## License
 
 ethminerGUI is released under the [GNU GPLv3](https://opensource.org/licenses/GPL-3.0).<br>
-ethminer is released under the [GNU GPLv3](https://opensource.org/licenses/GPL-3.0).<br>
-wintee/wtee.exe is released under the [Mozilla](https://www.mozilla.org/en-US/MPL/).<br>
+[(ethminer)](https://github.com/ethereum-mining/ethminer) is released under the [GNU GPLv3](https://opensource.org/licenses/GPL-3.0).<br>
+[(wintee/wtee.exe)](https://code.google.com/archive/p/wintee/) is released under the [Mozilla](https://www.mozilla.org/en-US/MPL/).<br>
 
 <p><img src="https://i.imgur.com/cngxEbh.png" width="875"></p>
 
