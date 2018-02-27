@@ -17,9 +17,9 @@ ethminerGUI - Graphical User Interface for "ethminer" (Windows)
 - The EXE can be placed anywhere. Optionally, you can place it with the exe.config and your custom settings.
 - [ethminer](https://github.com/ethereum-mining/ethminer) should be placed with the EXE or selected from Settings Menu.
 - The 'profiles.xml' holds the profiles you have created. This can be copied to other rigs and used without recreating.
-- %appdata%\ethminerGUI\user.config should only created if you "save settings on exit".
+- %appdata%\ethminerGUI\user.config should only be created if you "save settings on exit".
 - Note: the free 'win tee' (wtee.exe) is required to use the log feature. [(Google archive/source here)](https://code.google.com/archive/p/wintee/downloads)
-- Ethminer needs a newer release that supports newer flags. [Release Version "0.13.0"](https://github.com/ethereum-mining/ethminer/releases) was used developing this app.
+- Ethminer needs a newer release that supports newer flags (if you want to use them). [Release Version "0.13.0"](https://github.com/ethereum-mining/ethminer/releases) was used developing this app.
 - The release section ZIP file contains the pre-built ethminerGUI EXE along with wtee.exe and ethminer.exe.
 
 ## Features
