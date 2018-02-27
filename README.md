@@ -26,6 +26,7 @@ ethminerGUI - Graphical User Interface for "ethminer" (Windows)
 - Allows to save all your pools as profiles (profiles.xml)
 - No need for multiple cmd/batch files laying around
 - 'profiles.xml' can also be moved to other machines to share the profiles
+- Open-Source & NO FEE. You are welcome to donate on the Help/About page in app. Thank You.
 
 ## TO-DO
 
